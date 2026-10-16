@@ -1,0 +1,29 @@
+<view class="mrow {{selected === true ? 'mrow--on' : ''}}" catchtap="onRowTap">
+  <view
+    wx:if="{{selected === true || selected === false}}"
+    class="check {{selected === true ? 'check--on' : ''}}"
+    catchtap="onCheckTap"
+  >
+    <view wx:if="{{selected === true}}" class="check__tick"></view>
+  </view>
+
+  <view wx:if="{{thumb}}" class="thumb">
+    <image
+      wx:if="{{mistake.imagePath}}"
+      class="thumb__img"
+      src="{{mistake.imagePath}}"
+      mode="aspectFill"
+    />
+  </view>
+
+  <view class="body">
+    <view class="stem">{{mistake.stem}}</view>
+    <view class="meta">{{mistake.subjectName}} · {{mistake.pointName}} · {{mistake.questionType}}</view>
+    <view class="foot">
+      <view class="tags">
+        <text wx:for="{{mistake.tags}}" wx:key="*this" class="chip tag">{{item}}</text>
+      </view>
+      <mastery-badge class="badge" mastery="{{mistake.mastery}}" />
+    </view>
+  </view>
+</view>

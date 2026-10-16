@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "练习结果",
+  "usingComponents": {
+    "mastery-badge": "/components/mastery-badge/mastery-badge"
+  }
+}

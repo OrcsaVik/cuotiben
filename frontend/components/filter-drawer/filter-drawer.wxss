@@ -1,0 +1,134 @@
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-drawer);
+}
+
+.drawer__mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--mask);
+}
+
+.drawer__panel {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  max-height: 70%;
+  padding: 0 var(--page-gutter);
+  padding-bottom: calc(var(--sp-2) + env(safe-area-inset-bottom));
+  background: var(--bg-card);
+  border-top-left-radius: var(--r-lg);
+  border-top-right-radius: var(--r-lg);
+  transform: translate3d(0, 100%, 0);
+  transition: transform var(--dur-2) var(--ease), var(--theme-transition);
+}
+
+.drawer__panel--open {
+  transform: translateZ(0);
+}
+
+.drawer__hd {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--tap-min);
+}
+
+.drawer__title {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-lg);
+  font-weight: var(--fw-medium);
+  color: var(--text-1);
+}
+
+.drawer__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap-min);
+  height: var(--tap-min);
+}
+
+.drawer__body {
+  flex: 1;
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+.sec {
+  padding: var(--sp-3) 0;
+}
+
+.sec__title {
+  margin-bottom: var(--sp-2);
+}
+
+.opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.opt {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--sp-1) var(--sp-2);
+  border: var(--hairline);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--text-2);
+}
+
+.opt--on {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.opt__box {
+  /* 藏掉原生圆圈：label 点击转发仍切换 checkbox 值，选中态由 .opt--on 描边表达 */
+  display: none;
+}
+
+.kw {
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--tap-min);
+  padding: 0 var(--sp-2);
+  background: var(--bg-subtle);
+  border: var(--hairline);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-md);
+  color: var(--text-1);
+}
+
+.kw__ph {
+  color: var(--text-3);
+}
+
+.drawer__ft {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--tap-min);
+}
+
+.drawer__reset {
+  padding: var(--sp-2) var(--sp-1);
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  color: var(--text-3);
+}

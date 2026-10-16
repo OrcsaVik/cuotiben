@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "练习",
+  "usingComponents": {
+    "answer-panel": "/components/answer-panel/answer-panel"
+  }
+}

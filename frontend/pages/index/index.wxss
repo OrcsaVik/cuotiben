@@ -1,0 +1,230 @@
+.reminder__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reminder__go {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--brand);
+}
+
+.reminder__body {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  margin-top: var(--sp-1);
+}
+
+.reminder__text {
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  color: var(--text-1);
+}
+
+.stats {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sp-5);
+  margin-top: var(--sp-2);
+}
+
+.stat__label {
+  margin-top: var(--sp-1);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-xs);
+  color: var(--text-3);
+}
+
+.mbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+.mbar__label {
+  width: calc(var(--fs-sm) * 4);
+  flex-shrink: 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.mbar__track {
+  flex: 1;
+  height: var(--sp-1);
+  overflow: hidden;
+  background: var(--bg-subtle);
+  border-radius: var(--r-sm);
+  transition: var(--theme-transition);
+}
+
+.mbar__fill {
+  height: 100%;
+  border-radius: var(--r-sm);
+}
+
+.mbar__fill--danger {
+  background: var(--danger);
+}
+
+.mbar__fill--warning {
+  background: var(--warning);
+}
+
+.mbar__fill--success {
+  background: var(--success);
+}
+
+.mbar__num {
+  width: calc(var(--fs-sm) * 2);
+  flex-shrink: 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  font-variant-numeric: var(--nums);
+  text-align: right;
+  color: var(--text-1);
+}
+
+.mbar__pct {
+  width: calc(var(--fs-sm) * 3);
+  flex-shrink: 0;
+  font-size: var(--fs-xs);
+  line-height: var(--lh-xs);
+  font-variant-numeric: var(--nums);
+  text-align: right;
+  color: var(--text-3);
+}
+
+.srow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+.srow__name {
+  width: calc(var(--fs-md) * 2);
+  flex-shrink: 0;
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.srow__track {
+  flex: 1;
+  height: var(--sp-1);
+  overflow: hidden;
+  background: var(--bg-subtle);
+  border-radius: var(--r-sm);
+  transition: var(--theme-transition);
+}
+
+.srow__fill {
+  height: 100%;
+  background: var(--brand);
+  border-radius: var(--r-sm);
+}
+
+.srow__num {
+  width: calc(var(--fs-md) * 2);
+  flex-shrink: 0;
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  font-variant-numeric: var(--nums);
+  text-align: right;
+  color: var(--text-1);
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+.grid__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex: 1 0 auto;
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  padding: 0 var(--sp-2);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--text-1);
+  transition: var(--theme-transition);
+}
+
+.grid__item--tap {
+  background: var(--bg-active);
+}
+
+.prompt {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-drawer);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prompt__mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--mask);
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease);
+}
+
+.is-ready .prompt__mask {
+  opacity: 1;
+}
+
+/* position 必须显式给：静态定位的卡片会被绝对定位的遮罩盖住，点按钮等于点遮罩。 */
+.prompt__panel {
+  position: relative;
+  width: var(--prompt-w);
+  margin-bottom: 0;
+  opacity: 0;
+  transform: translateY(var(--lift-md));
+  transition: opacity var(--dur-3) var(--ease-rise),
+    transform var(--dur-3) var(--ease-rise);
+}
+
+.is-ready .prompt__panel {
+  opacity: 1;
+  transform: none;
+}
+
+.prompt__text {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--text-2);
+}
+
+.prompt__actions {
+  display: flex;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+
+.prompt__btn {
+  flex: 1;
+  min-width: 0;
+}

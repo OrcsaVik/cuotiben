@@ -1,0 +1,80 @@
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--tap-min);
+}
+
+.bar__count {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--text-2);
+}
+
+.bar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.link {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--brand);
+}
+
+.num {
+  color: var(--brand);
+  font-variant-numeric: var(--nums);
+}
+
+.list {
+  box-sizing: border-box;
+  height: calc(
+    100vh - var(--page-gutter) - var(--tap-min) - var(--sp-2) - var(--tabbar-h) -
+      var(--sp-5) - env(safe-area-inset-bottom)
+  );
+  margin-top: var(--sp-2);
+}
+
+.list__foot {
+  display: flex;
+  justify-content: center;
+  padding: var(--sp-3) 0;
+}
+
+.foot-text {
+  font-size: var(--fs-xs);
+  line-height: var(--lh-xs);
+  color: var(--text-3);
+}
+
+.selbar {
+  position: fixed;
+  right: var(--page-gutter);
+  bottom: calc(var(--tabbar-h) + var(--sp-2) + env(safe-area-inset-bottom));
+  left: var(--page-gutter);
+  z-index: var(--z-fab);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--r-lg);
+  transition: var(--theme-transition);
+}
+
+.selbar__count {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--text-1);
+}
+
+.selbar__btn {
+  flex-shrink: 0;
+  padding: 0 var(--sp-4);
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+}

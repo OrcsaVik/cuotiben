@@ -1,0 +1,62 @@
+<view class="page-root login {{themeClass}} {{ready ? 'is-ready' : ''}}">
+  <view class="login__hero-wrap">
+    <image class="login__hero" src="/assets/login-hero.svg" mode="aspectFit" />
+  </view>
+
+  <view class="login__head">
+    <view class="login__title">把订正留在同一本子上</view>
+    <view class="login__rule"></view>
+    <view class="login__sub">登录只是给本子写上名字，错题仍保存在本机</view>
+  </view>
+
+  <view class="login__panel">
+    <view class="card">
+      <block wx:if="{{signedIn}}">
+        <view class="login__id">
+          <view class="login__frame">
+            <image wx:if="{{profile.avatarUrl}}" class="login__avatar" src="{{profile.avatarUrl}}" mode="aspectFill" />
+            <view wx:else class="login__avatar login__avatar--blank">
+              <mp-icon icon="me" size="{{28}}" color="var(--text-3)" />
+            </view>
+          </view>
+          <view class="login__id-lines">
+            <view class="login__nick">{{profile.nickName}}</view>
+            <view class="login__meta">登录于 {{signedInLabel}}</view>
+          </view>
+        </view>
+        <view class="btn btn-ghost login__action" hover-class="btn-hover" bindtap="onSignOut">退出登录</view>
+      </block>
+
+      <block wx:else>
+        <button class="login__pick" hover-class="login__pick--hover" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+          <image wx:if="{{avatarUrl}}" class="login__avatar" src="{{avatarUrl}}" mode="aspectFill" />
+          <view wx:else class="login__avatar login__avatar--blank">
+            <mp-icon icon="add" size="{{24}}" color="var(--text-3)" />
+          </view>
+        </button>
+        <view class="login__pick-hint">{{avatarUrl ? '点头像可换一个' : '点击选择微信头像'}}</view>
+
+        <view class="field-row">
+          <text class="field-row__label">昵称</text>
+          <input
+            class="login__input"
+            type="nickname"
+            placeholder="点击填写微信昵称"
+            placeholder-class="login__placeholder"
+            value="{{nickName}}"
+            bindinput="onNickChange"
+            bindblur="onNickChange"
+          />
+        </view>
+
+        <button
+          class="btn btn-primary login__action"
+          hover-class="btn-hover"
+          disabled="{{!nickName}}"
+          bindtap="onSignIn"
+        >登录</button>
+        <view class="login__skip" bindtap="onSkip">暂不登录，先看看</view>
+      </block>
+    </view>
+  </view>
+</view>

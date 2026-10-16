@@ -1,0 +1,55 @@
+<view class="page-root page-root--tab {{themeClass}}">
+  <view class="card identity" bindtap="onGoLogin">
+    <view class="identity__avatar">
+      <image wx:if="{{avatarUrl}}" class="identity__pic" src="{{avatarUrl}}" mode="aspectFill" />
+      <mp-icon wx:else icon="me" size="{{24}}" color="var(--text-3)" />
+    </view>
+    <view class="identity__lines">
+      <view class="identity__name {{signedIn ? '' : 'identity__name--off'}}">{{nickName}}</view>
+      <view class="identity__sub">{{signedIn ? '演示数据保存在本机' : '点击登录，填个头像和昵称'}}</view>
+    </view>
+    <mp-icon icon="arrow" size="{{12}}" color="var(--text-3)" />
+  </view>
+
+  <view class="card overview">
+    <view class="overview__cell">
+      <text class="stat-num">{{total}}</text>
+      <text class="section-title overview__label">错题总数</text>
+    </view>
+    <view class="overview__cell">
+      <text class="stat-num">{{sessionCount}}</text>
+      <text class="section-title overview__label">练习次数</text>
+    </view>
+    <view class="overview__cell">
+      <text class="stat-num">{{masteredCount}}</text>
+      <text class="section-title overview__label">已掌握</text>
+    </view>
+  </view>
+
+  <view class="card theme-switch">
+    <view class="field-row">
+      <text class="field-row__label">深色模式</text>
+      <switch color="var(--brand)" checked="{{isDark}}" bindchange="onToggleTheme" />
+    </view>
+  </view>
+
+  <view class="section-title entries-label">功能入口</view>
+  <view class="card entries">
+    <view class="field-row" bindtap="onGoHistory">
+      <text class="field-row__label">练习记录</text>
+      <mp-icon icon="arrow" size="{{12}}" color="var(--text-3)" />
+    </view>
+    <view class="field-row" bindtap="onGoExport">
+      <text class="field-row__label">导出错题集</text>
+      <mp-icon icon="arrow" size="{{12}}" color="var(--text-3)" />
+    </view>
+    <view class="field-row" bindtap="onGoCategory">
+      <text class="field-row__label">分类浏览</text>
+      <mp-icon icon="arrow" size="{{12}}" color="var(--text-3)" />
+    </view>
+    <view class="field-row" bindtap="onGoSettings">
+      <text class="field-row__label">设置</text>
+      <mp-icon icon="arrow" size="{{12}}" color="var(--text-3)" />
+    </view>
+  </view>
+</view>

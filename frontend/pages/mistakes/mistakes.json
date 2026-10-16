@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "错题本",
+  "usingComponents": {
+    "mistake-card": "/components/mistake-card/mistake-card",
+    "empty-state": "/components/empty-state/empty-state",
+    "filter-drawer": "/components/filter-drawer/filter-drawer"
+  }
+}

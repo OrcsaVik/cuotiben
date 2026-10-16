@@ -1,0 +1,45 @@
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag-chip {
+  margin: 0 var(--sp-2) var(--sp-2) 0;
+}
+
+.tag-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--sp-1);
+  padding: var(--sp-1);
+}
+
+.tag-entry {
+  display: flex;
+  align-items: center;
+}
+
+.tag-field {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  height: var(--tap-min);
+  padding: 0 var(--sp-1);
+  font-size: var(--fs-md);
+  color: var(--text-1);
+}
+
+.tag-placeholder {
+  color: var(--text-3);
+}
+
+.tag-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  border-left: var(--hairline);
+}

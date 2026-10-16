@@ -1,0 +1,24 @@
+{
+  "name": "mistake-book-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "错题本微信小程序前端 — 纯前端 + Mock Service 层",
+  "scripts": {
+    "check": "node scripts/check-tokens.js",
+    "pretest": "npm run check",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFiles": [
+      "<rootDir>/tests/wx.mock.js"
+    ],
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.js"
+    ]
+  }
+}

@@ -1,0 +1,181 @@
+/* 入场动效全部走 transition 而不是 @keyframes：WXSS 的 keyframes 里 var() 求值不可靠。
+   根节点先以「未就位」态渲染一帧，onLoad 后置 is-ready，靠过渡把三块内容错峰抬起来。 */
+.login__hero-wrap {
+  opacity: 0;
+  transform: translateY(var(--lift-md)) scale(0.96);
+  transition: opacity var(--dur-4) var(--ease-rise),
+    transform var(--dur-4) var(--ease-rise);
+}
+
+.is-ready .login__hero-wrap {
+  opacity: 1;
+  transform: none;
+}
+
+.login__hero {
+  display: block;
+  width: var(--hero-w);
+  height: var(--hero-h);
+  margin: var(--sp-2) auto 0;
+}
+
+.login__head {
+  margin-top: var(--sp-5);
+  opacity: 0;
+  transform: translateY(var(--lift-sm));
+  transition: opacity var(--dur-3) var(--ease-rise) var(--stagger-1),
+    transform var(--dur-3) var(--ease-rise) var(--stagger-1);
+}
+
+.is-ready .login__head {
+  opacity: 1;
+  transform: none;
+}
+
+.login__title {
+  font-size: var(--fs-xl);
+  line-height: var(--lh-xl);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-title);
+  color: var(--text-1);
+}
+
+.login__rule {
+  width: 0;
+  height: var(--ink-bar);
+  margin-top: var(--sp-2);
+  background: var(--brand);
+  transition: width var(--dur-4) var(--ease-rise) var(--stagger-2);
+}
+
+.is-ready .login__rule {
+  width: var(--rule-w);
+}
+
+.login__sub {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--text-2);
+}
+
+.login__panel {
+  margin-top: var(--sp-5);
+  opacity: 0;
+  transform: translateY(var(--lift-sm));
+  transition: opacity var(--dur-3) var(--ease-rise) var(--stagger-2),
+    transform var(--dur-3) var(--ease-rise) var(--stagger-2);
+}
+
+.is-ready .login__panel {
+  opacity: 1;
+  transform: none;
+}
+
+/* 头像取近方而不是圆：本页的大圆角只留给掌握度徽标与录入凸起按钮。 */
+.login__pick {
+  display: block;
+  width: var(--avatar-d);
+  height: var(--avatar-d);
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  background: var(--bg-subtle);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--r-md);
+  line-height: 0;
+  transition: var(--theme-transition), transform var(--dur-1) var(--ease);
+}
+
+.login__pick::after {
+  border: none;
+}
+
+.login__pick--hover {
+  transform: scale(0.97);
+}
+
+.login__frame {
+  width: var(--avatar-d);
+  height: var(--avatar-d);
+  flex: none;
+  overflow: hidden;
+  background: var(--bg-subtle);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--r-md);
+  line-height: 0;
+}
+
+.login__avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.login__avatar--blank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login__pick-hint {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-xs);
+  letter-spacing: var(--ls-title);
+  color: var(--text-3);
+  text-align: center;
+}
+
+.login__input {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  text-align: right;
+  color: var(--text-1);
+}
+
+.login__placeholder {
+  color: var(--text-3);
+}
+
+.login__id {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.login__id-lines {
+  flex: 1;
+  min-width: 0;
+}
+
+.login__nick {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-lg);
+  font-weight: var(--fw-medium);
+  color: var(--text-1);
+}
+
+.login__meta {
+  margin-top: var(--sp-1);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-xs);
+  font-variant-numeric: var(--nums);
+  color: var(--text-2);
+}
+
+.login__action {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: var(--sp-5);
+}
+
+.login__skip {
+  margin-top: var(--sp-4);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--brand);
+  text-align: center;
+}

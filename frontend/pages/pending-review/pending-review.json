@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "待复习",
+  "usingComponents": {
+    "mistake-card": "/components/mistake-card/mistake-card",
+    "empty-state": "/components/empty-state/empty-state"
+  }
+}

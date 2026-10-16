@@ -1,0 +1,69 @@
+.edit-thumb {
+  width: var(--thumb);
+  height: var(--thumb);
+  background: var(--bg-subtle);
+  border: var(--hairline);
+}
+
+.edit-field {
+  padding: var(--sp-3) 0;
+}
+
+.edit-field__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--sp-2);
+}
+
+.edit-input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(var(--lh-md) * 2);
+  padding: var(--sp-1) 0;
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  color: var(--text-1);
+}
+
+.edit-input--stem {
+  min-height: calc(var(--lh-md) * 3);
+}
+
+.edit-placeholder {
+  color: var(--text-3);
+}
+
+.edit-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.edit-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--list-item-h);
+  min-height: var(--tap-min);
+  margin: 0 var(--sp-2) var(--sp-2) 0;
+  padding: 0 var(--sp-3);
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  color: var(--text-2);
+  transition: var(--theme-transition);
+}
+
+.edit-option--on {
+  background: var(--brand-bg);
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.edit-save {
+  width: 100%;
+  margin-top: var(--sp-4);
+}

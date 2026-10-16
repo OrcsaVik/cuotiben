@@ -1,0 +1,151 @@
+<wxs module="f">
+function answerLabel(type) {
+  if (type === '解答') return '参考答案';
+  return '答案';
+}
+
+function answerFlag(type) {
+  if (type === '解答') return '选填';
+  return '必填';
+}
+
+function isOptionRow(type) {
+  if (type === '单选') return true;
+  if (type === '多选') return true;
+  return type === '判断';
+}
+
+function isFreeText(type) {
+  if (type === '填空') return true;
+  return type === '解答';
+}
+
+function picked(answer, value, multiple) {
+  if (!multiple) return answer === value;
+  return answer.indexOf(value) >= 0;
+}
+
+module.exports = {
+  answerLabel: answerLabel,
+  answerFlag: answerFlag,
+  isOptionRow: isOptionRow,
+  isFreeText: isFreeText,
+  picked: picked
+};
+</wxs>
+
+<view class="page-root {{themeClass}}">
+  <mp-toptips msg="{{tips.msg}}" type="error" show="{{tips.show}}" delay="{{3000}}" bind:hide="onTipsHidden" />
+
+  <view class="field-row" wx:if="{{imagePath}}">
+    <text class="field-row__label">原图</text>
+    <image class="edit-thumb" src="{{imagePath}}" mode="aspectFill" bindtap="onPreviewImage" />
+  </view>
+
+  <view class="edit-field hairline-bottom">
+    <view class="edit-field__head">
+      <text class="field-row__label">题干</text>
+      <text class="section-title">必填</text>
+    </view>
+    <textarea
+      class="edit-input edit-input--stem"
+      value="{{stem}}"
+      placeholder="{{stemPlaceholder}}"
+      placeholder-class="edit-placeholder"
+      auto-height
+      maxlength="{{-1}}"
+      focus="{{focusStem}}"
+      bindinput="onStemInput"
+      bindblur="onStemBlur"
+    />
+  </view>
+
+  <view class="edit-field hairline-bottom">
+    <view class="edit-field__head">
+      <text class="field-row__label">科目 · 知识点</text>
+      <text class="section-title">必填</text>
+    </view>
+    <category-picker
+      subjects="{{subjects}}"
+      points="{{points}}"
+      subjectId="{{subjectId}}"
+      pointId="{{knowledgeId}}"
+      bind:subjectchange="onSubjectChange"
+      bind:pointchange="onPointChange"
+    />
+  </view>
+
+  <view class="edit-field hairline-bottom">
+    <view class="edit-field__head">
+      <text class="field-row__label">题型</text>
+      <text class="section-title">必填</text>
+    </view>
+    <view class="edit-options">
+      <view
+        class="edit-option {{questionType === item ? 'edit-option--on' : ''}}"
+        wx:for="{{questionTypes}}"
+        wx:key="*this"
+        data-value="{{item}}"
+        bindtap="onTypeTap"
+      >{{item}}</view>
+    </view>
+  </view>
+
+  <view class="edit-field hairline-bottom">
+    <view class="edit-field__head">
+      <text class="field-row__label">{{f.answerLabel(questionType)}}</text>
+      <text class="section-title" wx:if="{{questionType}}">{{f.answerFlag(questionType)}}</text>
+    </view>
+    <view class="edit-options" wx:if="{{f.isOptionRow(questionType)}}">
+      <view
+        class="edit-option {{f.picked(answer, item, questionType === '多选') ? 'edit-option--on' : ''}}"
+        wx:for="{{answerChoices}}"
+        wx:key="*this"
+        data-value="{{item}}"
+        bindtap="onAnswerOptionTap"
+      >{{item}}</view>
+    </view>
+    <textarea
+      class="edit-input"
+      wx:elif="{{f.isFreeText(questionType)}}"
+      value="{{answer}}"
+      placeholder="{{answerPlaceholder}}"
+      placeholder-class="edit-placeholder"
+      auto-height
+      maxlength="{{-1}}"
+      bindinput="onAnswerInput"
+    />
+    <text class="section-title" wx:else>请先选择题型</text>
+  </view>
+
+  <view class="edit-field hairline-bottom">
+    <view class="edit-field__head">
+      <text class="field-row__label">解析</text>
+      <text class="section-title">选填</text>
+    </view>
+    <textarea
+      class="edit-input"
+      value="{{analysis}}"
+      placeholder="写下思路、错因或订正要点"
+      placeholder-class="edit-placeholder"
+      auto-height
+      maxlength="{{-1}}"
+      bindinput="onAnalysisInput"
+    />
+  </view>
+
+  <view class="edit-field">
+    <view class="edit-field__head">
+      <text class="field-row__label">标签</text>
+      <text class="section-title">选填</text>
+    </view>
+    <tag-input
+      tags="{{tags}}"
+      placeholder="如 期中考、粗心"
+      bind:add="onTagAdd"
+      bind:remove="onTagRemove"
+    />
+  </view>
+
+  <button class="btn btn-primary edit-save" bindtap="onSave">保存</button>
+</view>

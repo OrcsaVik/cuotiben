@@ -1,0 +1,25 @@
+<view>
+  <view class="tag-list">
+    <view class="chip tag-chip" wx:for="{{tags}}" wx:key="*this">
+      <text>{{item}}</text>
+      <view class="tag-remove" data-tag="{{item}}" bindtap="onRemove">
+        <mp-icon icon="close" size="{{10}}" color="var(--text-3)" />
+      </view>
+    </view>
+  </view>
+
+  <view class="tag-entry hairline-top">
+    <input
+      class="tag-field"
+      value="{{draft}}"
+      placeholder="{{placeholder}}"
+      placeholder-class="tag-placeholder"
+      confirm-type="done"
+      bindinput="onInput"
+      bindconfirm="onAdd"
+    />
+    <view class="tag-submit" bindtap="onAdd">
+      <mp-icon icon="add" size="{{16}}" color="var(--brand)" />
+    </view>
+  </view>
+</view>

@@ -1,0 +1,100 @@
+<wxs module="tone">
+  var MASTERY = {
+    '未掌握': 'danger',
+    '部分掌握': 'warning',
+    '已掌握': 'success'
+  };
+  var VERDICT = {
+    '做对了': 'success',
+    '做错了': 'danger',
+    '蒙对了': 'warning'
+  };
+  module.exports = {
+    mastery: function (value) {
+      return MASTERY[value] || 'danger';
+    },
+    verdict: function (value) {
+      return VERDICT[value] || 'danger';
+    }
+  };
+</wxs>
+
+<view class="page-root {{themeClass}}">
+  <block wx:if="{{record}}">
+    <view class="detail-shot" wx:if="{{record.imagePath}}" bindtap="onPreviewImage">
+      <image class="detail-shot__img" src="{{record.imagePath}}" mode="widthFix" />
+    </view>
+
+    <view class="card">
+      <view class="section-title detail-label">题干</view>
+      <text class="detail-stem">{{record.stem}}</text>
+    </view>
+
+    <answer-panel
+      answer="{{answerText}}"
+      analysis="{{record.analysis}}"
+      revealed="{{answerRevealed}}"
+      bind:toggle="onToggleAnswer"
+    />
+
+    <view class="card">
+      <view class="section-title detail-label">分类与状态</view>
+
+      <view class="field-row">
+        <text class="field-row__label">题型</text>
+        <text class="field-row__value">{{record.questionType}}</text>
+      </view>
+
+      <view class="field-row">
+        <text class="field-row__label">科目</text>
+        <text class="field-row__value">{{subjectName}}</text>
+      </view>
+
+      <view class="field-row">
+        <text class="field-row__label">知识点</text>
+        <text class="field-row__value">{{pointName}}</text>
+      </view>
+
+      <view class="field-row" wx:if="{{record.tags.length}}">
+        <text class="field-row__label">标签</text>
+        <view class="detail-tags">
+          <text class="chip" wx:for="{{record.tags}}" wx:key="*this">{{item}}</text>
+        </view>
+      </view>
+
+      <view class="field-row">
+        <text class="field-row__label">掌握程度</text>
+        <view class="detail-mastery">
+          <view class="ink-bar ink-bar--{{tone.mastery(record.mastery)}}"></view>
+          <mastery-badge mastery="{{record.mastery}}" />
+        </view>
+      </view>
+
+      <view class="field-row">
+        <text class="field-row__label">复习次数</text>
+        <text class="field-row__value">{{reviewLogs.length}}</text>
+      </view>
+
+      <view class="field-row">
+        <text class="field-row__label">最近复习</text>
+        <text class="field-row__value">{{lastReviewText}}</text>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{reviewLogs.length}}">
+      <view class="section-title detail-label">复习历史</view>
+      <view class="field-row" wx:for="{{reviewLogs}}" wx:key="id">
+        <text class="field-row__label">{{item.dateText}}</text>
+        <text class="detail-verdict detail-verdict--{{tone.verdict(item.verdict)}}">{{item.verdict}}</text>
+      </view>
+    </view>
+
+    <view class="detail-space"></view>
+  </block>
+
+  <view class="detail-bar" wx:if="{{record}}">
+    <button class="btn btn-primary detail-bar__main" hover-class="btn-hover" bindtap="onRedo">重做本题</button>
+    <button class="btn btn-ghost detail-bar__side" hover-class="btn-hover" bindtap="onEdit">编辑</button>
+    <button class="btn btn-ghost detail-bar__side detail-bar__delete" hover-class="btn-hover" bindtap="onDelete">删除</button>
+  </view>
+</view>

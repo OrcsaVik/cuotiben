@@ -1,0 +1,17 @@
+<view class="tab-bar {{themeClass}}">
+  <block wx:for="{{list}}" wx:key="pagePath">
+    <view wx:if="{{item.fab}}" class="tab-cell tab-cell--fab">
+      <view class="tab-fab" data-index="{{index}}" bindtap="onTap">
+        <mp-icon icon="add" size="{{26}}" color="var(--on-brand)" />
+      </view>
+    </view>
+    <view wx:else class="tab-cell" data-index="{{index}}" bindtap="onTap">
+      <mp-icon
+        icon="{{item.icon}}"
+        size="{{22}}"
+        color="{{selected === index ? 'var(--brand)' : 'var(--text-3)'}}"
+      />
+      <text class="tab-label {{selected === index ? 'tab-label--on' : ''}}">{{item.text}}</text>
+    </view>
+  </block>
+</view>

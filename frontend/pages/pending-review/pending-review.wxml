@@ -1,0 +1,44 @@
+<wxs module="sel">
+function value(ids, id) {
+  return ids.indexOf(id) >= 0;
+}
+module.exports = { value: value };
+</wxs>
+
+<view class="page-root pending {{themeClass}}">
+  <view class="bar hairline-bottom">
+    <view class="bar__count">共 <text class="num">{{rows.length}}</text> 道超过 7 天未复习</view>
+    <view class="link" bindtap="onToggleAll">
+      {{rows.length > 0 && selectedIds.length === rows.length ? '取消全选' : '全选'}}
+    </view>
+  </view>
+
+  <view wx:if="{{rows.length > 0}}" class="list">
+    <view class="row hairline-bottom" wx:for="{{rows}}" wx:key="id">
+      <text class="row__overdue">超期 {{item.overdueDays}} 天</text>
+      <mistake-card
+        mistake="{{item.mistake}}"
+        selected="{{sel.value(selectedIds, item.id)}}"
+        bind:tap="onToggleItem"
+        bind:check="onToggleItem"
+      />
+    </view>
+  </view>
+
+  <empty-state
+    wx:else
+    icon="time"
+    text="没有超过 7 天未复习的错题"
+    action="返回首页"
+    bind:action="onGoHome"
+  />
+
+  <view wx:if="{{rows.length > 0}}" class="selbar">
+    <view class="selbar__count">已选 <text class="num">{{selectedIds.length}}</text> 题</view>
+    <button
+      class="btn btn-primary selbar__btn"
+      disabled="{{selectedIds.length === 0}}"
+      bindtap="onCreatePractice"
+    >生成练习</button>
+  </view>
+</view>

@@ -1,0 +1,52 @@
+<view class="page-root {{themeClass}}">
+  <view class="page-title">导出错题集</view>
+
+  <view class="card">
+    <view class="section-title">科目 · 多选，不选即全部</view>
+    <view class="chip-row">
+      <view
+        wx:for="{{subjects}}"
+        wx:key="id"
+        class="chip chip-toggle {{item.selected ? 'chip-toggle--on' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="onToggleSubject"
+      >{{item.name}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">时间范围</view>
+    <view class="chip-row">
+      <view
+        wx:for="{{timeRanges}}"
+        wx:key="key"
+        class="chip chip-toggle {{item.key === timeRange ? 'chip-toggle--on' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="onPickRange"
+      >{{item.label}}</view>
+    </view>
+    <view wx:if="{{timeRange === 'custom'}}">
+      <picker mode="date" value="{{startDate}}" bindchange="onStartDateChange">
+        <view class="field-row">
+          <text class="field-row__label">开始日期</text>
+          <text class="field-row__value">{{startDate}}</text>
+        </view>
+      </picker>
+      <picker mode="date" value="{{endDate}}" bindchange="onEndDateChange">
+        <view class="field-row">
+          <text class="field-row__label">结束日期</text>
+          <text class="field-row__value">{{endDate}}</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="card count-row">
+    <text class="count-row__label">将导出</text>
+    <text class="stat-num">{{count}}</text>
+    <text class="count-row__label">道错题</text>
+  </view>
+
+  <button class="btn btn-primary export-btn" disabled="{{count === 0}}" bindtap="onExport">导出</button>
+  <view class="export-note">导出产物为占位 PDF，用于演示导出链路，非真实排版。</view>
+</view>

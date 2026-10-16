@@ -1,0 +1,42 @@
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+.chip-toggle {
+  padding: var(--sp-1) var(--sp-2);
+  transition: var(--theme-transition);
+}
+
+.chip-toggle--on {
+  background: var(--brand-bg);
+  border: var(--border-w) solid var(--brand);
+  color: var(--brand);
+}
+
+.count-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--sp-2);
+}
+
+.count-row__label {
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  color: var(--text-2);
+}
+
+.export-btn {
+  width: 100%;
+}
+
+.export-note {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-xs);
+  color: var(--text-3);
+  text-align: center;
+}

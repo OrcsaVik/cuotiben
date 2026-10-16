@@ -1,0 +1,17 @@
+<view class="page-root page-root--tab {{themeClass}}">
+  <view class="page-title">录入错题</view>
+  <view class="capture-lede">先存下错题原图，识别出题干后只需补齐分类、答案与解析。</view>
+
+  <view class="card capture-stage" wx:if="{{imagePath}}">
+    <image class="capture-img" src="{{imagePath}}" mode="widthFix" bindtap="onPreview" />
+    <view class="capture-stage__foot hairline-top">
+      <mp-loading wx:if="{{recognizing}}" size="{{14}}" color="var(--text-2)" />
+      <text class="capture-stage__tip">{{recognizing ? '识别中' : '点击原图放大查看'}}</text>
+    </view>
+  </view>
+
+  <view class="capture-actions">
+    <button class="btn btn-primary capture-btn" bindtap="onCamera">拍照</button>
+    <button class="btn btn-ghost capture-btn" bindtap="onAlbum">从相册选择</button>
+  </view>
+</view>

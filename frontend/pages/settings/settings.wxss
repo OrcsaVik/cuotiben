@@ -1,0 +1,17 @@
+.settings-intro {
+  margin-bottom: var(--sp-3);
+}
+
+.settings-row {
+  border-bottom: none;
+}
+
+.settings-row--hover {
+  background: var(--bg-active);
+}
+
+.settings-action {
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  color: var(--danger);
+}

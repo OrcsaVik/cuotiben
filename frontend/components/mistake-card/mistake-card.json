@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mastery-badge": "/components/mastery-badge/mastery-badge"
+  }
+}

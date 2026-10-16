@@ -1,0 +1,60 @@
+@import '../styles/tokens.wxss';
+
+.tab-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-tabbar);
+  display: flex;
+  box-sizing: content-box;
+  height: var(--tabbar-h);
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--bg-card);
+  border-top: var(--border-w) solid var(--border);
+  transition: var(--theme-transition);
+}
+
+.tab-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-cell--fab {
+  position: relative;
+}
+
+.tab-label {
+  margin-top: var(--sp-1);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-xs);
+  color: var(--text-3);
+  transition: var(--theme-transition);
+}
+
+.tab-label--on {
+  color: var(--brand);
+  font-weight: var(--fw-medium);
+}
+
+/* 露出量由 --fab-rise 决定，所以圆心不在栏顶线上，而在它下方「半径 - 露出量」处。
+   负 margin 穿过 flex 居中不可靠（实测整条被丢弃），故用绝对定位 + translate 锚定。 */
+.tab-fab {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--fab-d) / 2 - var(--fab-rise));
+  z-index: var(--z-fab);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--fab-d);
+  height: var(--fab-d);
+  transform: translate(-50%, -50%);
+  border-radius: var(--r-pill);
+  background: var(--brand);
+  box-shadow: var(--shadow-2);
+  transition: var(--theme-transition);
+}

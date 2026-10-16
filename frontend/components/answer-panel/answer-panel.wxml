@@ -1,0 +1,22 @@
+<view class="answer-panel card">
+  <view
+    class="answer-toggle"
+    hover-class="answer-toggle--hover"
+    bindtap="onToggle"
+  >
+    <mp-icon icon="{{revealed ? 'eyes-off' : 'eyes-on'}}" size="{{16}}" color="var(--brand)" />
+    <text class="answer-toggle__text">{{revealed ? '收起答案与解析' : '显示答案与解析'}}</text>
+  </view>
+
+  <block wx:if="{{revealed}}">
+    <view class="answer-section hairline-top">
+      <view class="section-title answer-section__label">答案</view>
+      <text class="answer-text">{{answer}}</text>
+    </view>
+
+    <view class="answer-section hairline-top" wx:if="{{analysis}}">
+      <view class="section-title answer-section__label">解析</view>
+      <text class="answer-text">{{analysis}}</text>
+    </view>
+  </block>
+</view>

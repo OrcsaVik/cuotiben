@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "错题详情",
+  "usingComponents": {
+    "mastery-badge": "/components/mastery-badge/mastery-badge",
+    "answer-panel": "/components/answer-panel/answer-panel"
+  }
+}

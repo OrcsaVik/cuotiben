@@ -1,0 +1,23 @@
+<view class="page-root {{themeClass}}">
+  <view class="page-title">设置</view>
+  <view class="section-title settings-intro">演示行为开关与本地数据管理，改动立即生效并保存在本机。</view>
+
+  <view class="card">
+    <view class="field-row settings-row">
+      <text class="field-row__label">模拟 OCR 失败</text>
+      <switch color="var(--brand)" checked="{{simulateOcrFailure}}" bindchange="onOcrFailureChange" />
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="field-row settings-row" hover-class="settings-row--hover" bindtap="onResetDemo">
+      <text class="settings-action">重置演示数据</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="field-row settings-row" hover-class="settings-row--hover" bindtap="onWipeAll">
+      <text class="settings-action">清空全部数据</text>
+    </view>
+  </view>
+</view>

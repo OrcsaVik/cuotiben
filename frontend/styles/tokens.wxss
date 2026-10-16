@@ -1,0 +1,153 @@
+/* 设计令牌的唯一来源。app.wxss 与 custom-tab-bar/index.wxss 各自 @import 本文件——
+   custom-tab-bar 的根节点不是 page 的后代，拿不到 page {} 上的声明。
+
+   本文件只允许类选择器：组件 wxss 里出现标签/ID/属性选择器会被工具判为非法。
+   令牌因此全部挂在 .theme-light / .theme-dark 上，由页面根节点和 tab 栏根节点承载；
+   page 元素不持令牌，窗口背景交给 app.json 的 window.backgroundColor 与 wx.setBackgroundColor。 */
+
+/* ===== 结构令牌（主题无关） ===== */
+.theme-light,
+.theme-dark {
+  --sp-1: 8rpx;
+  --sp-2: 16rpx;
+  --sp-3: 24rpx;
+  --sp-4: 32rpx;
+  --sp-5: 48rpx;
+  --sp-6: 64rpx;
+  --card-pad: var(--sp-3);
+  --page-gutter: var(--sp-4);
+
+  --fs-xs: 22rpx;
+  --lh-xs: 32rpx;
+  --fs-sm: 26rpx;
+  --lh-sm: 36rpx;
+  --fs-md: 28rpx;
+  --lh-md: 40rpx;
+  --fs-lg: 32rpx;
+  --lh-lg: 44rpx;
+  --fs-xl: 36rpx;
+  --lh-xl: 50rpx;
+  --fs-num: 44rpx;
+  --lh-num: 56rpx;
+  --fs-display: 64rpx;
+  --lh-display: 72rpx;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 600;
+
+  --r-sm: 2rpx;
+  --r-md: 4rpx;
+  --r-lg: 8rpx;
+  --r-pill: 999rpx;
+
+  --border-w: 1rpx;
+  /* 值里带 --border，仍由两个主题类共同匹配的那段声明承载，在每个节点上按该节点的 --border 求值 */
+  --hairline: var(--border-w) solid var(--border);
+  --ink-bar: 6rpx;
+  --ls-title: 2rpx;
+  --nums: tabular-nums;
+
+  --z-tabbar: 100;
+  --z-fab: 110;
+  --z-mask: 200;
+  --z-drawer: 210;
+  --z-toast: 300;
+
+  --dur-1: 150ms;
+  --dur-2: 250ms;
+  --dur-3: 420ms;
+  --dur-4: 760ms;
+  --ease: cubic-bezier(0.25, 0.8, 0.5, 1);
+  --ease-rise: cubic-bezier(0.22, 1, 0.36, 1);
+  --stagger-1: 90ms;
+  --stagger-2: 180ms;
+  --stagger-3: 270ms;
+  --theme-transition: background-color var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
+
+  --tap-min: 88rpx;
+  --list-item-h: 96rpx;
+  --thumb: 96rpx;
+  --tabbar-h: 100rpx;
+  --fab-d: 112rpx;
+  --fab-rise: 28rpx;
+
+  --lift-sm: 12rpx;
+  --lift-md: 28rpx;
+  --hero-w: 520rpx;
+  --hero-h: 360rpx;
+  --avatar-d: 132rpx;
+  --prompt-w: 600rpx;
+  --rule-w: 168rpx;
+}
+
+/* ===== 浅色主题 ===== */
+.theme-light {
+  --bg-page: #ffffff;
+  --bg-card: #ffffff;
+  --bg-subtle: #f7f8fa;
+  --border: #dfe3e8;
+  --text-1: #1a1d24;
+  --text-2: #6b7280;
+  --text-3: #9ca3af;
+  --brand: #2f4a75;
+  --brand-active: #22375a;
+  --brand-bg: #eef2f7;
+  --on-brand: #ffffff;
+  --bg-active: rgba(0, 0, 0, 0.05);
+  --success: #3f7d5c;
+  --success-bg: #f0f4f2;
+  --warning: #b5762a;
+  --warning-bg: #f9f4ee;
+  --danger: #c0453c;
+  --danger-bg: #fbeceb;
+  --mask: rgba(0, 0, 0, 0.5);
+  --shadow-1: none;
+  --shadow-2: 0 6rpx 20rpx rgba(47, 74, 117, 0.28);
+}
+
+/* ===== 深色主题 ===== */
+.theme-dark {
+  --bg-page: #111318;
+  --bg-card: #1a1d24;
+  --bg-subtle: #23272f;
+  --border: rgba(255, 255, 255, 0.08);
+  --text-1: rgba(255, 255, 255, 0.92);
+  --text-2: rgba(255, 255, 255, 0.6);
+  --text-3: rgba(255, 255, 255, 0.35);
+  --brand: #8fadd6;
+  --brand-active: #aec5e6;
+  --brand-bg: rgba(143, 173, 214, 0.16);
+  --on-brand: #111318;
+  --bg-active: rgba(255, 255, 255, 0.08);
+  --success: #6fc49b;
+  --success-bg: rgba(111, 196, 155, 0.16);
+  --warning: #e8a86a;
+  --warning-bg: rgba(232, 168, 106, 0.16);
+  --danger: #ff8a7a;
+  --danger-bg: rgba(255, 138, 122, 0.16);
+  --mask: rgba(0, 0, 0, 0.7);
+  --shadow-1: none;
+  --shadow-2: 0 8rpx 32rpx rgba(0, 0, 0, 0.5);
+}
+
+/* 两个主题类都要写：自定义属性的 var() 在声明处即求值。
+   只在 .theme-light 上声明会被 .theme-dark 的后代继承成浅色值，改不动。 */
+.theme-light,
+.theme-dark {
+  --weui-BRAND: var(--brand);
+  --weui-BG-0: var(--bg-page);
+  --weui-BG-1: var(--bg-subtle);
+  --weui-BG-2: var(--bg-card);
+  --weui-FG-0: var(--text-1);
+  --weui-FG-1: var(--text-2);
+  --weui-FG-2: var(--text-3);
+  --weui-FG-3: var(--text-3);
+  --weui-FG-HALF: var(--text-1);
+  --weui-LINE-1: var(--border);
+  --weui-LINE-2: var(--border);
+  --weui-BG-COLOR-ACTIVE: var(--bg-active);
+  --weui-WHITE: var(--on-brand);
+  --weui-LINK: var(--brand);
+  --weui-RED: var(--danger);
+}

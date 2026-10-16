@@ -1,0 +1,22 @@
+node_modules/
+coverage/
+013-export-placeholder-pdf.md
+docs/
+# 微信开发者工具项目配置：各人 appid 与本地编译偏好不同，不入库
+# clone 后复制 frontend/project.config.example.json 为 project.config.json，填入自己的 appid
+project.config.json
+project.private.config.json
+
+# 构建过程文档（工单拆分、偏差记录）
+.scratch/
+
+# 编辑器
+.vscode/
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+*.log

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "录入错题",
+  "usingComponents": {
+    "mp-loading": "weui-miniprogram/loading/loading"
+  }
+}

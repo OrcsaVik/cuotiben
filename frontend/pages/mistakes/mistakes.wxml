@@ -1,0 +1,72 @@
+<wxs module="sel">
+function value(ids, id, mode) {
+  if (!mode) {
+    return null;
+  }
+  return ids.indexOf(id) >= 0;
+}
+module.exports = { value: value };
+</wxs>
+
+<view class="page-root page-root--tab {{themeClass}}">
+  <view class="bar hairline-bottom">
+    <view class="bar__count">共 <text class="num">{{total}}</text> 道错题</view>
+    <view class="bar__actions">
+      <view class="link" bindtap="onFilterTap">筛选<text wx:if="{{filterCount > 0}}"> · {{filterCount}}</text></view>
+      <view class="link" bindtap="onToggleSelect">{{selectMode ? '完成' : '选择'}}</view>
+    </view>
+  </view>
+
+  <scroll-view
+    wx:if="{{items.length > 0}}"
+    class="list"
+    scroll-y
+    bindscrolltolower="onLoadMore"
+  >
+    <view wx:for="{{items}}" wx:key="id" class="row hairline-bottom">
+      <mistake-card
+        mistake="{{item}}"
+        selected="{{sel.value(selectedIds, item.id, selectMode)}}"
+        bind:tap="onCardTap"
+        bind:check="onCardCheck"
+      />
+    </view>
+    <view class="list__foot">
+      <text wx:if="{{loadingMore}}" class="foot-text">加载中…</text>
+      <text wx:elif="{{!hasMore}}" class="foot-text">没有更多了</text>
+    </view>
+  </scroll-view>
+
+  <block wx:elif="{{!loading}}">
+    <empty-state
+      wx:if="{{storeTotal === 0}}"
+      text="还没有错题"
+      action="去录入第一道错题"
+      bind:action="onGoCapture"
+    />
+    <empty-state
+      wx:else
+      text="没有符合筛选条件的错题"
+      action="清空筛选"
+      bind:action="onClearFilter"
+    />
+  </block>
+
+  <view wx:if="{{selectMode}}" class="selbar">
+    <view class="selbar__count">已选 <text class="num">{{selectedIds.length}}</text> 题</view>
+    <button
+      class="btn btn-primary selbar__btn"
+      disabled="{{selectedIds.length === 0}}"
+      bindtap="onCreatePractice"
+    >生成练习</button>
+  </view>
+
+  <filter-drawer
+    visible="{{filterVisible}}"
+    subjects="{{filterSubjects}}"
+    filter="{{filter}}"
+    bind:confirm="onFilterConfirm"
+    bind:reset="onFilterReset"
+    bind:close="onFilterClose"
+  />
+</view>

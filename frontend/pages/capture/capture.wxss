@@ -1,0 +1,38 @@
+.capture-lede {
+  margin-bottom: var(--sp-5);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--text-2);
+}
+
+.capture-stage {
+  padding: 0;
+}
+
+.capture-img {
+  display: block;
+  width: 100%;
+  background: var(--bg-subtle);
+}
+
+.capture-stage__foot {
+  display: flex;
+  align-items: center;
+  padding: var(--sp-2) var(--card-pad);
+}
+
+.capture-stage__tip {
+  margin-left: var(--sp-2);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-xs);
+  color: var(--text-3);
+}
+
+.capture-actions {
+  margin-top: var(--sp-5);
+}
+
+.capture-btn {
+  width: 100%;
+  margin-bottom: var(--sp-3);
+}

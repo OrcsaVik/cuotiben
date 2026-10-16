@@ -1,0 +1,85 @@
+<view class="page-root {{themeClass}}" wx:if="{{current}}">
+  <view class="progress hairline-bottom">
+    <text class="section-title">练习进度</text>
+    <text class="stat-num progress__num">{{index + 1}}/{{total}}</text>
+  </view>
+
+  <view class="card">
+    <view class="question__head">
+      <text class="chip">{{current.questionType}}</text>
+    </view>
+    <text class="question__stem">{{current.stemText}}</text>
+
+    <radio-group
+      wx:if="{{current.questionType === '单选' || current.questionType === '判断'}}"
+      class="opts"
+      bindchange="onRadioChange"
+      disabled="{{locked}}"
+    >
+      <label wx:for="{{current.options}}" wx:key="key" class="opt opt--{{item.state}}">
+        <radio value="{{item.key}}" checked="{{item.checked}}" disabled="{{locked}}" />
+        <text class="opt__text">{{item.text ? item.key + '. ' + item.text : item.key}}</text>
+      </label>
+    </radio-group>
+
+    <checkbox-group
+      wx:elif="{{current.questionType === '多选'}}"
+      class="opts"
+      bindchange="onCheckChange"
+      disabled="{{locked}}"
+    >
+      <label wx:for="{{current.options}}" wx:key="key" class="opt opt--{{item.state}}">
+        <checkbox value="{{item.key}}" checked="{{item.checked}}" disabled="{{locked}}" />
+        <text class="opt__text">{{item.text ? item.key + '. ' + item.text : item.key}}</text>
+      </label>
+    </checkbox-group>
+
+    <view wx:elif="{{current.questionType === '填空'}}" class="blanks">
+      <view wx:for="{{blanks}}" wx:key="index" class="blank">
+        <text class="blank__label">第 {{index + 1}} 空</text>
+        <input
+          class="blank__input"
+          value="{{item}}"
+          data-index="{{index}}"
+          bindinput="onBlankInput"
+          disabled="{{locked}}"
+          placeholder="填写答案"
+        />
+      </view>
+    </view>
+
+    <block wx:elif="{{current.questionType === '解答'}}">
+      <answer-panel
+        answer="{{current.answer}}"
+        analysis="{{current.analysis}}"
+        revealed="{{revealed}}"
+        bind:toggle="onToggleAnswer"
+      />
+      <view wx:if="{{revealed}}" class="selfgrade">
+        <button class="btn btn-ghost selfgrade__btn" data-verdict="correct" bindtap="onSelfGrade">做对了</button>
+        <button class="btn btn-ghost selfgrade__btn" data-verdict="wrong" bindtap="onSelfGrade">做错了</button>
+        <button class="btn btn-ghost selfgrade__btn" data-verdict="lucky" bindtap="onSelfGrade">蒙对了</button>
+      </view>
+    </block>
+
+    <view wx:if="{{locked}}" class="verdict {{result.correct ? 'verdict--ok' : 'verdict--bad'}} hairline-top">
+      <text class="verdict__text">{{result.verdict}}</text>
+    </view>
+    <view wx:if="{{locked}}" class="answer-line hairline-top">
+      <text class="field-row__label">正确答案</text>
+      <text class="answer-line__value">{{current.answerText}}</text>
+    </view>
+  </view>
+
+  <view class="actions">
+    <button
+      wx:if="{{!locked && current.questionType !== '解答'}}"
+      class="btn btn-primary"
+      disabled="{{!canSubmit}}"
+      bindtap="onSubmit"
+    >提交</button>
+    <button wx:if="{{locked}}" class="btn btn-primary" bindtap="onAdvance">
+      {{index === total - 1 ? '查看结果' : '下一题'}}
+    </button>
+  </view>
+</view>

@@ -1,0 +1,98 @@
+<wxs module="sel">
+module.exports = {
+  on: function (list, value) {
+    if (!list) return false;
+    return list.indexOf(value) >= 0;
+  }
+};
+</wxs>
+
+<view wx:if="{{visible}}" class="drawer">
+  <view class="drawer__mask" bindtap="onClose"></view>
+
+  <view class="drawer__panel {{opened ? 'drawer__panel--open' : ''}}">
+    <view class="drawer__hd hairline-bottom">
+      <text class="drawer__title">筛选</text>
+      <view class="drawer__close" bindtap="onClose">
+        <mp-icon icon="close" size="{{12}}" color="var(--text-3)" />
+      </view>
+    </view>
+
+    <scroll-view class="drawer__body" scroll-y>
+      <view class="sec">
+        <view class="section-title sec__title">科目与知识点</view>
+        <category-picker
+          subjects="{{subjects}}"
+          points="{{points}}"
+          subjectId="{{draft.subjectId}}"
+          pointId="{{draft.knowledgeId}}"
+          bind:subjectchange="onSubjectChange"
+          bind:pointchange="onKnowledgeChange"
+        />
+      </view>
+
+      <view class="sec hairline-top">
+        <view class="section-title sec__title">题型</view>
+        <checkbox-group class="opts" bindchange="onTypeChange">
+          <label
+            class="opt {{sel.on(draft.questionType, item) ? 'opt--on' : ''}}"
+            wx:for="{{questionTypes}}"
+            wx:key="*this"
+          >
+            <checkbox
+              class="opt__box"
+              value="{{item}}"
+              checked="{{sel.on(draft.questionType, item)}}"
+            />
+            <text class="opt__text">{{item}}</text>
+          </label>
+        </checkbox-group>
+      </view>
+
+      <view class="sec hairline-top">
+        <view class="section-title sec__title">掌握程度</view>
+        <checkbox-group class="opts" bindchange="onMasteryChange">
+          <label
+            class="opt {{sel.on(draft.mastery, item) ? 'opt--on' : ''}}"
+            wx:for="{{masteryLevels}}"
+            wx:key="*this"
+          >
+            <checkbox
+              class="opt__box"
+              value="{{item}}"
+              checked="{{sel.on(draft.mastery, item)}}"
+            />
+            <text class="opt__text">{{item}}</text>
+          </label>
+        </checkbox-group>
+      </view>
+
+      <view class="sec hairline-top">
+        <view class="section-title sec__title">标签</view>
+        <tag-input
+          tags="{{draft.tags}}"
+          placeholder="输入标签，如：粗心"
+          bind:add="onTagAdd"
+          bind:remove="onTagRemove"
+        />
+      </view>
+
+      <view class="sec hairline-top">
+        <view class="section-title sec__title">关键词</view>
+        <input
+          class="kw"
+          value="{{draft.keyword}}"
+          placeholder="搜索题干关键词"
+          placeholder-class="kw__ph"
+          confirm-type="search"
+          bindinput="onKeywordInput"
+        />
+      </view>
+    </scroll-view>
+
+    <view class="drawer__ft hairline-top">
+      <view class="drawer__reset" bindtap="onReset">重置</view>
+      <button class="btn btn-primary drawer__confirm" bindtap="onConfirm">确定</button>
+    </view>
+  </view>
+</view>

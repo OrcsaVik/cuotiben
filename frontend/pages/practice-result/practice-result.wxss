@@ -1,0 +1,79 @@
+.ring-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+
+.ring {
+  position: relative;
+  box-sizing: border-box;
+  width: 50%;
+  height: 0;
+  padding-bottom: 50%;
+  border-radius: 50%;
+}
+
+.ring__hole {
+  position: absolute;
+  top: 14%;
+  right: 14%;
+  bottom: 14%;
+  left: 14%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-card);
+}
+
+.num--success {
+  color: var(--success);
+}
+
+.num--danger {
+  color: var(--danger);
+}
+
+.num--warning {
+  color: var(--warning);
+}
+
+.field-row--flat {
+  border-bottom: none;
+}
+
+.changes__title {
+  margin-bottom: var(--sp-2);
+}
+
+.change__stem {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--text-2);
+}
+
+.change__row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+.change__arrow {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--text-3);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+}

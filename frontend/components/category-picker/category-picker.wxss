@@ -1,0 +1,50 @@
+.picker-row {
+  display: flex;
+}
+
+.picker-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.picker-col + .picker-col {
+  margin-left: var(--sp-2);
+}
+
+.picker-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: var(--list-item-h);
+  padding: 0 var(--sp-2);
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--r-md);
+  transition: var(--theme-transition);
+}
+
+.picker-box--off {
+  opacity: 0.4;
+}
+
+.picker-value {
+  overflow: hidden;
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  color: var(--text-1);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.picker-value--empty {
+  color: var(--text-3);
+}
+
+/* mp-icon 对 arrow / back 两个图标强制放大 2 倍，故此处 size 传 8 实得 16px */
+.picker-arrow {
+  display: flex;
+  flex-shrink: 0;
+  margin-left: var(--sp-1);
+  transform: rotate(90deg);
+}

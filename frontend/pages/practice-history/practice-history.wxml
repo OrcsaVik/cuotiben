@@ -1,0 +1,60 @@
+<wxs module="tone">
+  var VERDICT = {
+    '做对了': 'success',
+    '做错了': 'danger',
+    '蒙对了': 'warning'
+  };
+  module.exports = {
+    verdict: function (value) {
+      return VERDICT[value] || 'danger';
+    }
+  };
+</wxs>
+
+<view class="page-root {{themeClass}}">
+  <block wx:if="{{sessions.length}}">
+    <view class="card session" wx:for="{{sessions}}" wx:key="id">
+      <view class="field-row" data-id="{{item.id}}" bindtap="onToggleSession">
+        <text class="field-row__label">{{item.timeText}}</text>
+        <view class="session__meta">
+          <text class="session__count">{{item.total}} 题</text>
+          <text class="accuracy accuracy--{{item.tone}}">{{item.accuracyText}}</text>
+          <view class="session__chevron {{expandedId === item.id ? 'session__chevron--open' : ''}}">
+            <mp-icon icon="arrow" size="{{12}}" color="var(--text-3)" />
+          </view>
+        </view>
+      </view>
+
+      <view class="detail" wx:if="{{expandedId === item.id}}">
+        <view
+          class="detail__item hairline-bottom"
+          wx:for="{{details[item.id]}}"
+          wx:for-item="row"
+          wx:key="mistakeId"
+        >
+          <view class="detail__stem">{{row.stem}}</view>
+          <view class="detail__answer">
+            <text class="section-title detail__label">答案</text>
+            <text class="detail__answer-text">{{row.answerText}}</text>
+          </view>
+          <view class="detail__foot">
+            <text class="detail__verdict detail__verdict--{{tone.verdict(row.verdict)}}">{{row.verdict}}</text>
+            <view class="detail__mastery">
+              <mastery-badge mastery="{{row.masteryBefore}}" />
+              <text class="detail__shift">→</text>
+              <mastery-badge mastery="{{row.masteryAfter}}" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <empty-state
+    wx:else
+    icon="info"
+    text="还没有练习记录"
+    action="去错题本"
+    bind:action="onGoMistakes"
+  />
+</view>

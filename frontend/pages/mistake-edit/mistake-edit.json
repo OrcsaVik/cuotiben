@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "编辑错题",
+  "usingComponents": {
+    "category-picker": "/components/category-picker/category-picker",
+    "tag-input": "/components/tag-input/tag-input",
+    "mp-toptips": "weui-miniprogram/toptips/toptips"
+  }
+}

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" fill="none">
+  <!-- 单一中性墨色 #6E82A0：对白底 3.91:1、对深色页底 #111318 为 4.79:1，
+       两套主题都过 3:1，所以只需一份。层次一律用 opacity 做，不引入第二个色值。 -->
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" stroke="#6E82A0" stroke-opacity=".2" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+
+  <g transform="rotate(-7 254 178)">
+    <rect x="104" y="58" width="300" height="240" rx="3"
+          fill="#6E82A0" fill-opacity=".05" stroke="#6E82A0" stroke-opacity=".38" stroke-width="2.5"/>
+  </g>
+
+  <g transform="rotate(2 271 187)">
+    <rect x="126" y="70" width="290" height="234" rx="3" fill="#6E82A0" fill-opacity=".04"/>
+    <rect x="126" y="70" width="290" height="234" rx="3" fill="url(#grid)"/>
+    <rect x="126" y="70" width="290" height="234" rx="3"
+          stroke="#6E82A0" stroke-opacity=".68" stroke-width="3"/>
+    <path d="M172 70V304" stroke="#6E82A0" stroke-opacity=".5" stroke-width="2.5"/>
+
+    <g stroke="#6E82A0" stroke-opacity=".42" stroke-width="5" stroke-linecap="round">
+      <path d="M192 112H332"/>
+      <path d="M192 150H374"/>
+      <path d="M192 188H300"/>
+      <path d="M192 226H336"/>
+      <path d="M192 264H258"/>
+    </g>
+
+    <g stroke="#6E82A0" stroke-opacity=".85" stroke-linecap="round">
+      <circle cx="149" cy="150" r="17" stroke-width="2.5"/>
+      <path d="M142 143l14 14M156 143l-14 14" stroke-width="3"/>
+      <path d="M348 226l8 10 18-26" stroke-width="5"/>
+    </g>
+  </g>
+
+  <g transform="translate(232 302) rotate(-24)">
+    <rect x="18" y="-17" width="42" height="7" rx="3.5" fill="#6E82A0" fill-opacity=".4"/>
+    <rect x="0" y="-11" width="150" height="22" rx="7"
+          fill="#6E82A0" fill-opacity=".1" stroke="#6E82A0" stroke-opacity=".72" stroke-width="2.5"/>
+    <path d="M128 -11V11" stroke="#6E82A0" stroke-opacity=".72" stroke-width="2.5"/>
+    <path d="M150 -11l30 11-30 11z" fill="#6E82A0" fill-opacity=".78"/>
+  </g>
+  <circle cx="404" cy="242" r="5" fill="#6E82A0" fill-opacity=".6"/>
+  <path d="M398 254c3 5 9 5 12 0" stroke="#6E82A0" stroke-opacity=".35" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

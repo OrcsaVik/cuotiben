@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "练习记录",
+  "usingComponents": {
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "mastery-badge": "/components/mastery-badge/mastery-badge",
+    "empty-state": "/components/empty-state/empty-state"
+  }
+}

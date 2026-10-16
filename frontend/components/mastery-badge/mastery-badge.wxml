@@ -1,0 +1,14 @@
+<wxs module="tone">
+  var MAP = {
+    '未掌握': 'danger',
+    '部分掌握': 'warning',
+    '已掌握': 'success'
+  };
+  module.exports = {
+    cls: function (mastery) {
+      return MAP[mastery] || 'danger';
+    }
+  };
+</wxs>
+
+<text class="badge badge--{{tone.cls(mastery)}}">{{mastery}}</text>
